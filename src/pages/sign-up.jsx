@@ -54,7 +54,9 @@ const SignUpPage = () => {
 
       router.push("/sign-in")
     } catch (err) {
-      console.error(err)
+      if (err.response.data) {
+        return alert(err.response.data)
+      }
     }
   }
 

@@ -22,7 +22,7 @@ const History = () => {
   useEffect(() => {
     ;(async () => {
       if (!session?.userId) {
-        return console.error("No session")
+        return
       }
 
       const { data } = await api.get(`/histories/users/${session.userId}`)

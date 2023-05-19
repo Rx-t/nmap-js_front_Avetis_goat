@@ -35,7 +35,9 @@ const SignInPage = () => {
 
       router.push("/")
     } catch (err) {
-      console.error(err)
+      if (err.response.data) {
+        return alert(err.response.data)
+      }
     }
   }
 

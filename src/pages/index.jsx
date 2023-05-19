@@ -52,8 +52,6 @@ const IndexPage = () => {
       if (err.response.data) {
         return alert(err.response.data)
       }
-
-      console.error(err)
     }
 
     setIsLoading(false)
@@ -95,7 +93,7 @@ const IndexPage = () => {
             </label>
             <div className="relative inline-block w-full">
               <select
-                className="focus:shadow-outline block w-full appearance-none rounded border border-gray-400 bg-white px-4 py-2 pr-8 leading-tight shadow hover:border-gray-500 focus:outline-none cursor-pointer"
+                className="focus:shadow-outline block w-full cursor-pointer appearance-none rounded border border-gray-400 bg-white px-4 py-2 pr-8 leading-tight shadow hover:border-gray-500 focus:outline-none"
                 id="scan-type"
                 value={scanType}
                 onChange={handleScanTypeChange}
@@ -127,7 +125,7 @@ const IndexPage = () => {
             onClick={onScan}
             className={`${
               isLoading
-                ? "bg-gray-500 cursor-not-allowed"
+                ? "cursor-not-allowed bg-gray-500"
                 : "bg-blue-500 hover:bg-blue-700"
             } focus:shadow-outline rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700 focus:outline-none`}
             disabled={isLoading}
@@ -136,16 +134,16 @@ const IndexPage = () => {
           </button>
         </div>
         {!!nmapResult?.tableData?.length && (
-          <div className="bg-white shadow-md rounded my-6">
-            <table className="min-w-max w-full table-auto">
+          <div className="my-6 rounded bg-white shadow-md">
+            <table className="w-full min-w-max table-auto">
               <thead>
-                <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                <tr className="bg-gray-200 text-sm uppercase leading-normal text-gray-600">
                   <th className="py-3 px-6 text-left">Port</th>
                   <th className="py-3 px-6 text-left">State</th>
                   <th className="py-3 px-6 text-left">Service</th>
                 </tr>
               </thead>
-              <tbody className="text-gray-600 text-sm font-light">
+              <tbody className="text-sm font-light text-gray-600">
                 {nmapResult.tableData.map((portInfo, index) => {
                   if (!portInfo?.port || portInfo?.port === "Nmap") {
                     return null
@@ -156,13 +154,13 @@ const IndexPage = () => {
                       key={`${portInfo?.port} - ${index}`}
                       className="border-b border-gray-200 hover:bg-gray-100"
                     >
-                      <td className="py-3 px-6 text-left whitespace-nowrap">
+                      <td className="whitespace-nowrap py-3 px-6 text-left">
                         {portInfo?.port}
                       </td>
-                      <td className="py-3 px-6 text-left whitespace-nowrap">
+                      <td className="whitespace-nowrap py-3 px-6 text-left">
                         {portInfo?.state}
                       </td>
-                      <td className="py-3 px-6 text-left whitespace-nowrap">
+                      <td className="whitespace-nowrap py-3 px-6 text-left">
                         {portInfo?.service}
                       </td>
                     </tr>
